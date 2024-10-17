@@ -24,7 +24,7 @@ chmod +x redis-cluster-dockerized-instances.sh
 
 # Run the script to set up the Redis Cluster
 # You can specify the Redis version with the REDIS_VERSION environment variable
-REDIS_VERSION=6.2.8 ./redis-cluster-dockerized-instances.sh
+REDIS_VERSION=7.2.6 ./redis-cluster-dockerized-instances.sh
 ```
 
 This script will:
