@@ -17,7 +17,7 @@ This repository contains a script that automatically sets up a 3-master Redis Cl
 
 ## How to Use
 
-### 1. Download and Run the Bootstrap Script
+### 1. Download and Run the Bootstrap Script (local docker required for now)
 
 To quickly set up a Redis Cluster, run the following commands:
 
@@ -32,6 +32,12 @@ chmod +x redis-cluster-dockerized-instances.sh
 # You can specify the Redis version with the REDIS_VERSION environment variable
 REDIS_VERSION=7.2.6 ./redis-cluster-dockerized-instances.sh
 ```
+
+#### Why Dockerized?
+
+To ensure consistent behavior across environments, we opted for Docker containers to run the Redis cluster. This increases compatibility, especially in varied or constrained environments like CI/CD pipelines. Docker ensures that all dependencies are handled in an isolated, predictable manner.
+
+The [redis-cluster-bootstrapper.sh](redis-cluster-bootstrapper.sh) will teach you how to run the same cluster with pure Redis CE processes in the same runtime environment. You can MAKE your own redis, or use `redis-stack` (until we absorb the JSON and other modules).
 
 **This script will:**
 
