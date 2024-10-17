@@ -103,7 +103,7 @@ Please remember that if you were using Harness or Drone.io, this would be a simp
 
 1. Navigate to the `go-demo` directory:
     ```bash
-    cd go-demo
+    cd go-demo-testcontainers
     ```
 
 2. Fetch Go dependencies:
