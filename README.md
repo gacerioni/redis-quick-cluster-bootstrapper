@@ -94,10 +94,10 @@ docker run --rm -d \
 
 ## Go Demo
 
-This repository includes a Go demo program that interacts with the Redis cluster.\
-It uses testcontainers.com, to illustrate how we could run this from a CI Pipeline.
+This repository includes a Go demo program that creates a Redis cluster from scratch (testcontainers) and interacts with the Redis cluster.\
+It uses testcontainers.com to run my custom redis oss image, in order to illustrate how we could run this from a CI Pipeline.
 
-Must remember you that, if you were using Harness or Drone.io, this would be a simple Background Service step.
+Please remember that if you were using Harness or Drone.io, this would be a simple Background Service step.
 
 ### Running the Go Demo
 
