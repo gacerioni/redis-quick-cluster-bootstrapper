@@ -44,10 +44,10 @@ After running the script, the following operations are performed automatically t
 
 ### OPTIONAL - 3. RedisInsight - Local Setup with Host Networking
 
-You can use RedisInsight to visualize and manage your Redis Cluster. Run the following command to launch RedisInsight:
+You can use RedisInsight to visualize and manage your Redis Cluster. Run the following command to launch RedisInsight in host network mode:
 
 ```bash
-docker run -d --name redisinsight -p 5540:5540 redis/redisinsight:latest
+docker run -d --name redisinsight --net=host redis/redisinsight:latest
 ```
 
 Access RedisInsight in your browser at:
