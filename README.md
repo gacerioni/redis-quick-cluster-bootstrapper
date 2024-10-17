@@ -9,6 +9,10 @@ This repository contains a script that automatically sets up a 3-master Redis Cl
 - Configurable Redis version via environment variable (defaults to Redis 7.2.6)
 - Ready to use with RedisInsight for monitoring
 
+## ✨ Important Notice - To save you some time✨
+
+**If you just need a quick docker/container image that will automatically build this redis oss/ce cluster (in the version you want) and offer all important ports at the host level, please go to [Step 5](#step-5-quick-container-setup)**
+
 ## How to Use
 
 ### 1. Download and Run the Bootstrap Script
@@ -61,7 +65,7 @@ Once open, follow these steps to connect RedisInsight to your Redis Cluster:
 2.	Click Add Redis Database.
 3.	Use the following settings:
   -	Host: Enter the server’s private IP (use this instead of localhost if needed).
-	 -	Port: 7000 (or any other node port).
+  -	Port: 7000 (or any other node port).
 4.	Click Test Connection to ensure the connection is successful.
 
 ## 4. Clean Up
@@ -71,7 +75,7 @@ docker stop redis-node-7000 redis-node-7001 redis-node-7002 redisinsight
 docker rm redis-node-7000 redis-node-7001 redis-node-7002 redisinsight
 ```
 
-## 5. EASIEST OPTION - Gabs Custom Docker Image (I'll keep it on my dockerhub registry)
+## Step 5: Quick Container Setup
 
 Alternatively, you can run the entire Redis cluster setup with a custom Docker image:
 
@@ -86,3 +90,40 @@ docker run --rm -d \
 ```
 
 **This will spin up the Redis cluster and expose the necessary ports for external use.**
+
+
+## Go Demo
+
+This repository includes a Go demo program that interacts with the Redis cluster.\
+It uses testcontainers.com, to illustrate how we could run this from a CI Pipeline.
+
+Must remember you that, if you were using Harness or Drone.io, this would be a simple Background Service step.
+
+### Running the Go Demo
+
+1. Navigate to the `go-demo` directory:
+    ```bash
+    cd go-demo
+    ```
+
+2. Fetch Go dependencies:
+    ```bash
+    go mod tidy
+    ```
+
+3. Run the demo program:
+    ```bash
+    go run main.go
+    ```
+
+#### Important Note:
+
+Once the demo starts, the Redis cluster will run for 5 minutes. During this time, you can connect to the cluster and interact with it in real-time.
+
+Use tools like RedisInsight to visually monitor the cluster, or interact via the command line using the following command:
+
+```bash
+redis-cli -c -h 127.0.0.1 -p 7000
+```
+
+#### 
