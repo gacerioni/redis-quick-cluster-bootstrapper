@@ -86,7 +86,7 @@ docker run --rm -d \
   -p 7002:7002 \
   -p 17000-17002:17000-17002 \
   --name redis-quick-cluster \
-  gacerioni/redis-quick-cluster:0.1.1-gabs
+  gacerioni/redis-quick-cluster:0.1.4-gabs
 ```
 
 **This will spin up the Redis cluster and expose the necessary ports for external use.**
