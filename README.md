@@ -53,7 +53,7 @@ docker run -d --name redisinsight --net=host redis/redisinsight:latest
 Access RedisInsight in your browser at:
 
 ```bash
-http://localhost:5540
+http://<server_reachable_ip>:5540
 ```
 
 Once open, follow these steps to connect RedisInsight to your Redis Cluster:
