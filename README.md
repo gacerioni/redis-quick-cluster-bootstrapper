@@ -27,22 +27,22 @@ chmod +x redis-cluster-dockerized-instances.sh
 REDIS_VERSION=7.2.6 ./redis-cluster-dockerized-instances.sh
 ```
 
-This script will:
+**This script will:**
 
 1.	Start 3 Redis nodes on ports 7000, 7001, and 7002.
 2.	Create a Redis Cluster across these nodes.
 3.	Verify the cluster status.
-4.	Perform basic SET and GET operations to ensure the cluster is functioning correctly.
+4.	Perform basic SET and GET operations to ensure the cluster functions correctly.
 
-### 2. Verifying the Redis Cluster
+## 2. Verifying the Redis Cluster
 
 After running the script, the following operations are performed automatically to verify the cluster:
 
--	Cluster Status Check: The script checks if the Redis Cluster is up and running by verifying the cluster state.
--	Ping Nodes: Each Redis node is pinged to ensure it’s responsive.
--	Data Insertion and Retrieval: A test key (testkey) is inserted into the cluster, and the same key is retrieved from the node to confirm that the cluster is functional.
+- Cluster Status Check: The script checks if the Redis Cluster is up and running by verifying the cluster state.
+- Ping Nodes: Each Redis node is pinged to ensure it’s responsive.
+- Data Insertion and Retrieval: A test key (testkey) is inserted into the cluster, and the same key is retrieved from the node to confirm that the cluster is functional.
 
-### OPTIONAL - 3. RedisInsight - Local Setup with Host Networking
+## 3. RedisInsight - Local Setup with Host Networking (Optional)
 
 You can use RedisInsight to visualize and manage your Redis Cluster. Run the following command to launch RedisInsight in host network mode:
 
@@ -51,7 +51,6 @@ docker run -d --name redisinsight --net=host redis/redisinsight:latest
 ```
 
 Access RedisInsight in your browser at:
-
 ```bash
 http://<server_reachable_ip>:5540
 ```
@@ -61,14 +60,29 @@ Once open, follow these steps to connect RedisInsight to your Redis Cluster:
 1.	Open RedisInsight in your browser.
 2.	Click Add Redis Database.
 3.	Use the following settings:
- -	Host: host private's ip (if localhost fails)
- -	Port: 7000 (or any other node port)
+  -	Host: Enter the server’s private IP (use this instead of localhost if needed).
+	 -	Port: 7000 (or any other node port).
 4.	Click Test Connection to ensure the connection is successful.
 
-
-### 4. Clean Up
+## 4. Clean Up
 
 ```bash
 docker stop redis-node-7000 redis-node-7001 redis-node-7002 redisinsight
 docker rm redis-node-7000 redis-node-7001 redis-node-7002 redisinsight
 ```
+
+## 5. EASIEST OPTION - Gabs Custom Docker Image (I'll keep it on my dockerhub registry)
+
+Alternatively, you can run the entire Redis cluster setup with a custom Docker image:
+
+```bash
+docker run --rm -d \
+  -p 7000:7000 \
+  -p 7001:7001 \
+  -p 7002:7002 \
+  -p 17000-17002:17000-17002 \
+  --name redis-quick-cluster \
+  gacerioni/redis-quick-cluster:0.1.1-gabs
+```
+
+**This will spin up the Redis cluster and expose the necessary ports for external use.**
