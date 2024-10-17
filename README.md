@@ -6,13 +6,14 @@ This repository contains a script that automatically sets up a 3-master Redis Cl
 
 - Automated Redis Cluster creation (3 master nodes)
 - Cluster verification with basic `SET` and `GET` commands
+- Configurable Redis version via environment variable (defaults to Redis 7.2.6)
 - Ready to use with RedisInsight for monitoring
 
 ## How to Use
 
 ### 1. Download and Run the Bootstrap Script
 
-To quickly set up a Redis Cluster, simply run the following commands:
+To quickly set up a Redis Cluster, run the following commands:
 
 ```bash
 # Download the setup script
@@ -22,7 +23,8 @@ wget https://raw.githubusercontent.com/gacerioni/redis-quick-cluster-bootstrappe
 chmod +x redis-cluster-dockerized-instances.sh
 
 # Run the script to set up the Redis Cluster
-./redis-cluster-dockerized-instances.sh
+# You can specify the Redis version with the REDIS_VERSION environment variable
+REDIS_VERSION=6.2.8 ./redis-cluster-dockerized-instances.sh
 ```
 
 This script will:
