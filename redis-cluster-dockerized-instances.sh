@@ -1,14 +1,17 @@
 #!/bin/bash
 
+# Accept Redis version from environment variable, default to 7.2.6 if not provided
+REDIS_VERSION=${REDIS_VERSION:-7.2.6}
+
 # Define Redis node ports
 REDIS_PORTS=("7000" "7001" "7002")
 
 # Start Redis nodes
 for PORT in "${REDIS_PORTS[@]}"; do
-  echo "Starting Redis node on port $PORT..."
+  echo "Starting Redis node on port $PORT with Redis version $REDIS_VERSION..."
   docker run -d --name redis-node-$PORT \
     --net host \
-    redis:7.2.6 \
+    redis:$REDIS_VERSION \
     redis-server --port $PORT --cluster-enabled yes --cluster-config-file nodes-$PORT.conf --appendonly yes
 done
 
@@ -69,7 +72,6 @@ done
 
 # Test data insertion and retrieval on the same node (port 7000)
 echo "Testing SET and GET commands on the same node..."
-
 
 # Set and Get on the same node to avoid MOVED redirection
 docker exec redis-node-7000 redis-cli -p 7000 set testkey "Hello, Redis Cluster!"
