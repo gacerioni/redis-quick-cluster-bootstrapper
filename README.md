@@ -33,7 +33,7 @@ chmod +x redis-cluster-dockerized-instances.sh
 REDIS_VERSION=7.2.6 ./redis-cluster-dockerized-instances.sh
 ```
 
-#### Why Dockerized?
+#### 👽 Why Dockerized? 👽
 
 To ensure consistent behavior across environments, we opted for Docker containers to run the Redis cluster. This increases compatibility, especially in varied or constrained environments like CI/CD pipelines. Docker ensures that all dependencies are handled in an isolated, predictable manner.
 
