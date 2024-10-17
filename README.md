@@ -23,7 +23,7 @@ To quickly set up a Redis Cluster, run the following commands:
 
 ```bash
 # Download the setup script
-wget https://raw.githubusercontent.com/gacerioni/redis-quick-cluster-bootstrapper/refs/heads/master/redis-cluster-dockerized-instances.sh
+curl -O https://raw.githubusercontent.com/gacerioni/redis-quick-cluster-bootstrapper/main/redis-cluster-dockerized-instances.sh
 
 # Make the script executable
 chmod +x redis-cluster-dockerized-instances.sh
