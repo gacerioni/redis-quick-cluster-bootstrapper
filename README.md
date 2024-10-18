@@ -48,6 +48,19 @@ We could also make redis from scratch, with the source code, but this might be a
     REDIS_VERSION=6.2.11 go run main.go
     ```
 
+4.	The program will start the Redis Cluster in Docker with the specified Redis version. It will attempt to connect to the Redis Cluster, perform basic commands (SET and GET), and allow you to interact with the cluster for 5 minutes.
+
+#### Example Output
+
+```bash
+Using host network. Redis cluster running at: localhost
+Redis ports: 7000, 7001, 7002
+PING Response: PONG
+SET command succeeded
+GET Response: Hello, Redis Cluster!
+```
+
+
 ## How to Use
 
 ### 1. Download and Run the Bootstrap Script (local docker required for now)
