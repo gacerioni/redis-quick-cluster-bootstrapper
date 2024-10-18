@@ -17,6 +17,10 @@ The cluster is intended for development, CI/CD Pipelines, and testing purposes. 
 
 **If you just need a quick docker/container image that will automatically build this redis oss/ce cluster (in the version you want) and offer all important ports at the host level, please go to [Step 5](#step-5-quick-container-setup)**
 
+## Demo in PT-BR (recording the English version this weekend)
+
+[![Watch the video](https://img.youtube.com/vi/qrhzZz5s9VI/0.jpg)](https://youtu.be/qrhzZz5s9VI)
+
 ## How to Use
 
 ### 1. Download and Run the Bootstrap Script (local docker required for now)
