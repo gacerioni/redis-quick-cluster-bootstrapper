@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"os"
 	"time"
 
 	"github.com/redis/go-redis/v9"
@@ -13,12 +14,21 @@ import (
 )
 
 func main() {
+	// Define default Redis version
+	defaultRedisVersion := "7.2.6"
+	redisVersion := os.Getenv("REDIS_VERSION")
+	if redisVersion == "" {
+		redisVersion = defaultRedisVersion
+	}
+	fmt.Printf("Using Redis version: %s\n", redisVersion)
+
 	ctx := context.Background()
 
-	// Create Redis cluster container request with host network mode
+	// Create Redis cluster container request with host network mode and Redis version
 	req := testcontainers.ContainerRequest{
-		Image:      "gacerioni/redis-quick-cluster:0.1.4-gabs",
-		WaitingFor: wait.ForLog("Cluster is up and running.").WithStartupTimeout(60 * time.Second), // Wait until the cluster is ready
+		Image:        "gacerioni/redis-quick-cluster:0.1.5-unstable",
+		Env:          map[string]string{"REDIS_VERSION": redisVersion}, // Pass the version via environment variable
+		WaitingFor:   wait.ForLog("Cluster is up and running.").WithStartupTimeout(60 * time.Second), // Wait until the cluster is ready
 		HostConfigModifier: func(hostConfig *container.HostConfig) {
 			hostConfig.NetworkMode = "host" // Set host network mode for Linux
 		},
@@ -79,7 +89,7 @@ func main() {
 	}
 	fmt.Println("GET Response:", val)
 
-        // Sleep for 5 minutes (300 seconds)
-        fmt.Println("Sleeping for 5 minutes to allow interaction with the Redis cluster...")
-        time.Sleep(5 * time.Minute)
+	// Sleep for 5 minutes (300 seconds)
+	fmt.Println("Sleeping for 5 minutes to allow interaction with the Redis cluster...")
+	time.Sleep(5 * time.Minute)
 }
