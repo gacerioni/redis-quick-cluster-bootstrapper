@@ -21,6 +21,33 @@ The cluster is intended for development, CI/CD Pipelines, and testing purposes. 
 
 [![Watch the video](https://img.youtube.com/vi/qrhzZz5s9VI/0.jpg)](https://youtu.be/qrhzZz5s9VI)
 
+## Running the Go Demo (tescontainers) passing an specific Redis Server version (good feature for CI)
+
+This repository includes a Go demo program that creates a Redis cluster from scratch (testcontainers) and interacts with the Redis cluster.\
+It uses testcontainers.com to run my custom redis oss image, in order to illustrate how we could run this from a CI Pipeline.
+
+Please remember that if you were using Harness or Drone.io, this would be a simple Background Service step.
+
+You can pick an specific Redis version and the script will do its best to find the proper release in the Redis Registry.\
+We could also make redis from scratch, with the source code, but this might be an overkill or Plan B. :smile:
+
+### Running the Go Demo
+
+1. Navigate to the `go-demo` directory:
+    ```bash
+    cd go-demo-testcontainers
+    ```
+
+2. Fetch Go dependencies:
+    ```bash
+    go mod tidy
+    ```
+
+3. Run the demo program - this example runs the cluster @ version `6.2.11`:
+    ```bash
+    REDIS_VERSION=6.2.11 go run main.go
+    ```
+
 ## How to Use
 
 ### 1. Download and Run the Bootstrap Script (local docker required for now)
@@ -127,29 +154,6 @@ This command will:
 2.	Start the cluster on ports 7000, 7001, and 7002.
 3.	Verify the cluster setup and perform basic tests.
 
-## Go Demo
-
-This repository includes a Go demo program that creates a Redis cluster from scratch (testcontainers) and interacts with the Redis cluster.\
-It uses testcontainers.com to run my custom redis oss image, in order to illustrate how we could run this from a CI Pipeline.
-
-Please remember that if you were using Harness or Drone.io, this would be a simple Background Service step.
-
-### Running the Go Demo
-
-1. Navigate to the `go-demo` directory:
-    ```bash
-    cd go-demo-testcontainers
-    ```
-
-2. Fetch Go dependencies:
-    ```bash
-    go mod tidy
-    ```
-
-3. Run the demo program:
-    ```bash
-    go run main.go
-    ```
 
 #### Important Note:
 
