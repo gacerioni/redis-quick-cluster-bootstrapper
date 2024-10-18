@@ -2,7 +2,9 @@
 
 ![Redis Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Redis_logo.svg/640px-Redis_logo.svg.png)
 
-This repository contains a script that automatically sets up a 3-master Redis Cluster using Docker. The cluster is intended for development and testing purposes, offering a quick way to bootstrap a Redis Cluster.
+This repository contains a script that automatically sets up a 3-master Redis Cluster using Docker or pure redis processes copies in the runtime.
+
+The cluster is intended for development, CI/CD Pipelines, and testing purposes. In other words, it offers a quick way to bootstrap a Redis Cluster.
 
 ## Features
 
