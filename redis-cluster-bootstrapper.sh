@@ -1,5 +1,27 @@
 #!/bin/bash
 
+# Accept Redis version from environment variable, default to 7.2.6 if not provided
+USER_REDIS_VERSION=${REDIS_VERSION:-7.2.6}
+
+# Dynamically fetch the full version string using apt-cache madison
+REDIS_VERSION=$(apt-cache madison redis-server | grep "$USER_REDIS_VERSION" | head -n 1 | awk '{print $3}')
+
+# Ensure we found a valid Redis version
+if [[ -z "$REDIS_VERSION" ]]; then
+  echo "Error: Unable to find Redis version $USER_REDIS_VERSION. Exiting..."
+  exit 1
+fi
+
+# Install Redis Server and Redis Tools with matching versions
+echo "Installing Redis version $REDIS_VERSION..."
+apt-get install -y redis-server=$REDIS_VERSION redis-tools=$REDIS_VERSION
+
+# Check if installation was successful
+if ! command -v redis-server &> /dev/null; then
+    echo "Redis installation failed. Exiting..."
+    exit 1
+fi
+
 # Define Redis node ports
 REDIS_PORTS=("7000" "7001" "7002")
 
@@ -11,6 +33,7 @@ for PORT in "${REDIS_PORTS[@]}"; do
     --cluster-config-file nodes-$PORT.conf \
     --appendonly yes \
     --protected-mode no \
+    --bind 0.0.0.0 \
     --daemonize yes
   
   sleep 2

@@ -105,6 +105,27 @@ docker run --rm -d \
 
 **This will spin up the Redis cluster and expose the necessary ports for external use.**
 
+## 6. Danger Zone: Using Custom Redis Versions 🚨
+You can select a specific Redis version for your cluster using my custom Docker image. The default version is `7.2.6`, but you can pass the desired version as an environment variable.
+
+**Example: Running Redis version `6.2.11`:**
+
+```bash
+docker run --rm -it \
+  -p 7000:7000 \
+  -p 7001:7001 \
+  -p 7002:7002 \
+  -p 17000-17002:17000-17002 \
+  -e REDIS_VERSION=6.2.11 \
+  --name redis-quick-cluster \
+  gacerioni/redis-quick-cluster:0.1.5-unstable
+```
+
+This command will:
+
+1.	Search madison and pull the very specific Redis version 6.2.11.
+2.	Start the cluster on ports 7000, 7001, and 7002.
+3.	Verify the cluster setup and perform basic tests.
 
 ## Go Demo
 
